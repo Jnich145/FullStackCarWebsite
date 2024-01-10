@@ -13,7 +13,7 @@ django.setup()
 # from sales_rest.models import Something
 
 
-def poll(repeat=True):
+def poll():
     while True:
         print('Sales poller polling for data')
         try:
@@ -23,9 +23,6 @@ def poll(repeat=True):
             pass
         except Exception as e:
             print(e, file=sys.stderr)
-        
-        if (not repeat):
-            break
 
         time.sleep(60)
 
