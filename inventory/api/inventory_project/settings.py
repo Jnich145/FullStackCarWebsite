@@ -51,7 +51,7 @@ MIDDLEWARE = [
 
 ALLOWED_HOSTS = [
     "localhost",
-    "project-beta-inventory-api-1",
+    "project-beta-inventory-api-1", # WELL THAT WAS DIFFERENT!!!!!
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -60,6 +60,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost:8090"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
