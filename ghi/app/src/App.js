@@ -14,11 +14,11 @@ import AutomobilesList from './Inventory/Automobiles/List';
 import AutomobileForm from './Inventory/Automobiles/Form';
 import ModelsList from './Inventory/Vehicles/List';
 import ModelForm from './Inventory/Vehicles/Form';
-// import TechnicianForm from './Service/Technicians/Form';
-// import TechniciansList from './Service/Technicians/List';
-// import AppointmentForm from './Service/Appointments/Form';
-// import AppointmentsList from './Service/Appointments/List';
-// import AppointmentHistory from './Service/Appointments/History';
+import TechnicianForm from './Service/Technicians/Form';
+import TechniciansList from './Service/Technicians/List';
+import AppointmentForm from './Service/Appointments/Form';
+import AppointmentsList from './Service/Appointments/List';
+import AppointmentHistory from './Service/Appointments/History';
 
 function App() {
   return (
@@ -52,7 +52,7 @@ function App() {
             <Route path="new" element={<SaleForm />} />
             <Route path="history" element={<SaleHistory />} />
           </Route>
-          {/* <Route path="technicians">
+          <Route path="technicians">
               <Route path="new" element={<TechnicianForm />} ></Route>
               <Route path="" element={<TechniciansList />} ></Route>
           </Route>
@@ -60,7 +60,7 @@ function App() {
               <Route path="new" element={<AppointmentForm />} ></Route>
               <Route path="" element={<AppointmentsList />} ></Route>
               <Route path="history" element={<AppointmentHistory />} ></Route>
-          </Route> */}
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>

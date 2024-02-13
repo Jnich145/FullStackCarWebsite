@@ -1,105 +1,101 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 
-function AutomobileForm () {
-    const [models, setModels] = useState([]);
-    const [color, setColor] = useState('');
-    const [year, setYear] = useState('');
-    const [vin, setVin] = useState('');
-    const [model, setModel] = useState();
+function ModelForm() {
+  const [manufacturers, setManufacturers] = useState([]);
 
-    const handleColorChange = (event) => {
-        const value = event.target.value;
-        setColor(value);
+  const [name, setName] = useState('');
+  const [picture_url, setPictureUrl] = useState('');
+  const [manufacturer, setManufacturer] = useState('');
+
+
+  const handleNameChange = (event) => {
+      const value = event.target.value;
+      setName(value);
+  }
+
+  const handlePictureUrlChange = (event) => {
+    const value = event.target.value;
+    setPictureUrl(value);
+  }
+
+  const handleManufacturerChange = (event) => {
+    const value = event.target.value;
+    setManufacturer(value);
+  }
+
+  const handleSubmit = async (event) => {
+      event.preventDefault();
+
+      const data = {};
+      data.name = name;
+      data.picture_url = picture_url;
+      data.manufacturer_id = manufacturer;
+      console.log(data)
+
+      const modelsUrl = 'http://localhost:8100/api/models/';
+      const fetchConfig = {
+          method: "post",
+          body: JSON.stringify(data),
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      };
+
+      const response = await fetch(modelsUrl, fetchConfig);
+      if (response.ok) {
+          setName('');
+          setPictureUrl('');
+          setManufacturer('');
+      }
+  };
+
+  const fetchData = async () => {
+    const url = 'http://localhost:8100/api/manufacturers/';
+
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      setManufacturers(data.manufacturers)
     }
+  }
 
-    const handleYearChange = (event) => {
-        const value = event.target.value;
-        setYear(value);
-    }
+  useEffect(() => {
+      fetchData();
+  }, []);
 
-    const handleVinChange = (event) => {
-        const value = event.target.value;
-        setVin(value);
-    }
 
-    const handleModelChange = (event) => {
-        const value = event.target.value;
-        setModel(value);
-    }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const data = {};
 
-        data.color = color;
-        data.year = year;
-        data.vin = vin;
-        data.model_id = model;
+  return (
 
-        const automobilesUrl = 'http://localhost:8100/api/automobiles/';
-        const fetchConfig = {
-            method: 'post',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
+<div className="h-screen">
+    <div className="flex flex-col items-center">
+    <br></br>
+    <h2 className="text-4xl font-bold text-white">Add a Model</h2>
+    <br></br>
+        <form onSubmit={handleSubmit} className="flex flex-col flex-center bg-gray-800 rounded shadow-lg p-8" action="">
+            <input value={name} onChange={handleNameChange} className="text-white mb-2 flex items-center h-12 px-4 w-64 bg-gray-600 mt-2 rounded focus:outline-none focus:ring-2" type="text" placeholder="Model Name" required/>
+            <input value={picture_url} onChange={handlePictureUrlChange} className="text-white mb-2 flex items-center h-12 px-4 w-64 bg-gray-600 mt-2 rounded focus:outline-none focus:ring-2" type="text" placeholder="Picture URL" required/>
 
-        const response = await fetch(automobilesUrl, fetchConfig);
-        if (response.ok) {
-            setColor('');
-            setYear('');
-            setVin('');
-            setModel('');
-        }
-    }
-
-    const fetchData = async () => {
-        const url = 'http://localhost:8100/api/models/';
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const data = await response.json();
-            setModels(data.models)
-        }
-    }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    return(
-        <div className="h-screen">
-            <div className="flex flex-col items-center">
-            <br></br>
-            <h1 className="flex flex-col flex-center bg-gray-800 rounded shadow-lg p-8">Add an Automobile</h1>
-            <br></br>
-                <form onSubmit={handleSubmit} className="flex flex-col flex-center bg-gray-800 rounded shadow-lg p-8" action="">
-                    <input value={color} onChange={handleColorChange} placeholder="Color" required type="text" name="color" id="color" className="mb-2 flex items-center h-12 px-4 w-64 bg-gray-600 mt-2 rounded focus:outline-none focus:ring-2"></input>
-
-                    <input value={year} onChange={handleYearChange} placeholder="Year" required type="text" name="year" id="year" className="mb-2 flex items-center h-12 px-4 w-64 bg-gray-600 mt-2 rounded focus:outline-none focus:ring-2"></input>
-
-                    <input value={vin} onChange={handleVinChange} placeholder="Vin" required type="text" name="vin" id="vin" className="mb-2 flex items-center h-12 px-4 w-64 bg-gray-600 mt-2 rounded focus:outline-none focus:ring-2"></input>
-
-                    <select value={model} onChange={handleModelChange} required name="model" id="model" className="mb-2 flex items-center h-12 px-4 w-64 bg-gray-600 mt-2 rounded focus:outline-none focus:ring-2">
-                    <option value="">Choose a model</option>
-                    {models.map(model => {
+            <select onChange={handleManufacturerChange} className="text-white mb-2 flex items-center h-12 px-4 w-64 bg-gray-600 mt-2 rounded focus:outline-none focus:ring-2">
+                <option>Choose a manufacturer</option>
+                    {manufacturers.map(manufacturer => {
                         return (
-                            <option key={model.id} value={model.id}>
-                                {model.name}
+                            <option className="text-white" key={manufacturer.id} value={manufacturer.id}>
+                                {manufacturer.name}
                             </option>
-                        );
-                    })}
-                    </select>
+                    );
+                })}
+            </select>
 
-                <button className="flex items-center justify-center h-12 px-6 w-64 bg-cyan-700 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-cyan-800">Create</button>
-                </form>
-            </div>
-        </div>
+            <button className="flex items-center justify-center h-12 px-6 w-64 bg-cyan-700 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-cyan-800">Create</button>
+        </form>
+    </div>
+</div>
 
-    )
-
-
+  );
 }
 
-export default AutomobileForm;
+export default ModelForm;
+
