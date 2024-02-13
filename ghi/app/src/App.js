@@ -14,11 +14,11 @@ import AutomobilesList from './Inventory/Automobiles/List';
 import AutomobileForm from './Inventory/Automobiles/Form';
 import ModelsList from './Inventory/Vehicles/List';
 import ModelForm from './Inventory/Vehicles/Form';
-// import TechnicianForm from './Service/Technicians/Form';
-// import TechniciansList from './Service/Technicians/List';
-// import AppointmentForm from './Service/Appointments/Form';
-// import AppointmentsList from './Service/Appointments/List';
-// import AppointmentHistory from './Service/Appointments/History';
+import TechnicianForm from './Service/Technicians/Form';
+import TechniciansList from './Service/Technicians/List';
+import AppointmentForm from './Service/Appointments/Form';
+import AppointmentsList from './Service/Appointments/List';
+import AppointmentHistory from './Service/Appointments/History';
 
 function App() {
   return (
