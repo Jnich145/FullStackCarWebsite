@@ -4,8 +4,8 @@ CarCar is an application for managing the aspects of an automobile dealership. I
 
 Team:
 
-* **Student 1** - Auto Sales: Justin
-* **Student 2** - Auto Services: James
+Auto sales, inventory functionality and frontend design: Justin Nichols
+Auto services functionality: James
 
 ## Getting Started
 
@@ -14,15 +14,14 @@ Team:
 1. Fork this repository
 
 2. Clone the forked repository onto your local computer:
-git clone https://gitlab.com/James-R-Morris/project-beta
 
-3. Build and run the project using Docker with these commands:
+3. Build and run the project using Docker with these commands in your terminal:
 ```
 docker volume create beta-data
 docker-compose build
 docker-compose up
 ```
-- After running these commands, make sure all of your Docker containers are running
+- After running these commands, ensure all of your Docker containers are running
 
 - View the project in the browser: http://localhost:3000/
 
