@@ -26,7 +26,6 @@ docker-compose up
 
 - View the project in the browser: http://localhost:3000/
 
-![Img](/images/CarCarWebsite.png)
 
 ## Design
 
@@ -36,7 +35,7 @@ CarCar is made up of 3 microservices which interact with one another.
 - **Services**
 - **Sales**
 
-![Img](/images/CarCarDiagram.png)
+
 
 
 ## Integration - How we put the "team" in "team"
